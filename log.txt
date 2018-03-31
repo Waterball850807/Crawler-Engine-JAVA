@@ -31,3 +31,22 @@
 [CrawlerEngine] Tue Mar 27 15:23:04 CST 2018// preparing crawlers.....
 [CrawlerEngine] Tue Mar 27 15:23:04 CST 2018// crawlers count: 1
 [CrawlerEngine] Tue Mar 27 15:23:04 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sat Mar 31 23:28:17 CST 2018// Crawler engine started.
+[CrawlerEngine] Sat Mar 31 23:28:17 CST 2018// preparing crawlers.....
+[CrawlerEngine] Sat Mar 31 23:28:17 CST 2018// crawlers count: 1
+[CrawlerEngine] Sat Mar 31 23:28:17 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sat Mar 31 23:28:38 CST 2018// Crawler engine started.
+[CrawlerEngine] Sat Mar 31 23:28:38 CST 2018// preparing crawlers.....
+[CrawlerEngine] Sat Mar 31 23:28:38 CST 2018// crawlers count: 1
+[CrawlerEngine] Sat Mar 31 23:28:38 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sat Mar 31 23:28:40 CST 2018// Start shceduling...
+[CrawlerEngine] Sat Mar 31 23:28:40 CST 2018// run crawler CrawlerExample
+[CrawlerEngine] Sat Mar 31 23:58:17 CST 2018// Crawler engine started.
+[CrawlerEngine] Sat Mar 31 23:58:17 CST 2018// preparing crawlers.....
+[CrawlerEngine] Sat Mar 31 23:58:17 CST 2018// crawlers count: 1
+[CrawlerEngine] Sat Mar 31 23:58:17 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// Crawler engine started.
+[CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// preparing crawlers.....
+[CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// crawlers count: 2
+[CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// Crawler [CrawlerExample] is prepared.

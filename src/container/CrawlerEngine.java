@@ -10,8 +10,7 @@ public final class CrawlerEngine {
 	private Logger logger;
 	
 	public void startEngine(final int frequency) {
-		new CrawlerExample();
-		activityRepository = new JdbcProxy(new JdbcActivityRepository());
+		activityRepository = new MockActivityRepository();/*new JdbcProxy(new JdbcActivityRepository())*/
 		logger = new Logger("log.txt", "err.txt");
 		logger.start();
 		logger.log(getClass(), "Crawler engine started.");

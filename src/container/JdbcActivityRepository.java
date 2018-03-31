@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import com.sun.corba.se.pept.transport.ResponseWaitingRoom;
 
 public class JdbcActivityRepository implements ActivityRepository{
 	private Connection con;

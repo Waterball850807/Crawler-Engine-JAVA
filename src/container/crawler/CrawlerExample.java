@@ -15,7 +15,7 @@ public class CrawlerExample implements Crawler{
 		// 若只是debug用日誌，呼叫 logger.log(getClass(), "訊息")
 		// 若是錯誤日至，呼叫 logger.err(getClass(), "錯誤訊息") 
 		// 或是  logger.err(getClass(), "錯誤訊息", 例外物件) 
-		
+		logger.log(getClass(), "sdfsdf");
 		System.out.println("Crawler Example is starting!");
 	}
 
