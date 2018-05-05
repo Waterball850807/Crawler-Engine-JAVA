@@ -17,7 +17,6 @@ public class CrawlerManager {
 	 */
 	public CrawlerManager(){
 		addCrawler(new CrawlerExample());
-		addCrawler(new CrawlerExample());
 	}
 	
 	public static CrawlerManager register(Class<? extends Crawler> crawlerClz){

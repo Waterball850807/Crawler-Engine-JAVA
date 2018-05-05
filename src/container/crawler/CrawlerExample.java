@@ -21,11 +21,6 @@ public class CrawlerExample implements Crawler{
 
 
 	@Override
-	public String getLink() {
-		return "http://www.sanchong.ntpc.gov.tw/news/index.php?mode=data&id=958&parent_id=10010&type_id=10026";  //回傳你爬蟲的來源網址
-	}
-
-	@Override
 	public String getSource() {
 		return "三重區公所"; // 請回傳資料來源名稱
 	}

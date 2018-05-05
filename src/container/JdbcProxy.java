@@ -12,9 +12,10 @@ public class JdbcProxy implements ActivityRepository{
 	private JdbcActivityRepository jdbcRp;
 	private Logger logger;
 	private Connection con;
-	private long activitiesCacheExpireTime = TimeUnit.SECONDS.toMillis(10);
+	private long activitiesCacheExpireTime = TimeUnit.MINUTES.toMillis(3);
 	private long activitiesGetLastTime = 0;
 	private List<Activity> activitiesCache = new ArrayList<>();
+	private ActivityTag[] activityTagsCache;
 	
 	public JdbcProxy(JdbcActivityRepository jdbcRp) {
 		logger = new Logger("jdbcLog.txt", "jdbcErr.txt");
@@ -45,7 +46,7 @@ public class JdbcProxy implements ActivityRepository{
 		if (con != null && !con.isClosed())
 			con.close();
 		logger.log(getClass(), "jdbc connection closed.");
-		logger.stop();
+		logger.close();
 		super.finalize();
 	}
 	
@@ -98,5 +99,27 @@ public class JdbcProxy implements ActivityRepository{
 	@Override
 	public Activity getActivity(int id) {
 		return jdbcRp.getActivity(id);
+	}
+
+	@Override
+	public void attachTagsToActivity(int activityId, int[] tagIds) {
+		jdbcRp.attachTagsToActivity(activityId, tagIds);
+	}
+
+	@Override
+	public ActivityTag[] getActivityTags() {
+		if (activityTagsCache == null)
+			activityTagsCache = jdbcRp.getActivityTags();
+		return activityTagsCache;
+	}
+
+	@Override
+	public ActivityTag getActivityTag(int tagId) {
+		if (activityTagsCache == null)
+			activityTagsCache = jdbcRp.getActivityTags();
+		for(ActivityTag tag : activityTagsCache)
+			if (tag.getId() == tagId)
+				return tag;
+		throw new IllegalArgumentException("ActivityTag id: " + tagId + " not found.");
 	}
 }
