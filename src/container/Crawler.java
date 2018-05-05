@@ -7,10 +7,6 @@ public interface Crawler {
 	 */
 	void crawl(ActivityRepository activityRepository, Logger logger);
 	
-	/**
-	 * @return target crawling link
-	 */
-	String getLink(); 
 	
 	/**
 	 * @return data source name 

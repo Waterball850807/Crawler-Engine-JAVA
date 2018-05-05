@@ -50,3 +50,20 @@
 [CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// crawlers count: 2
 [CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// Crawler [CrawlerExample] is prepared.
 [CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 01 16:44:30 CST 2018// Crawler engine started.
+[CrawlerEngine] Sun Apr 01 16:44:30 CST 2018// preparing crawlers.....
+[CrawlerEngine] Sun Apr 01 16:44:30 CST 2018// crawlers count: 2
+[CrawlerEngine] Sun Apr 01 16:44:30 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 01 16:44:30 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 01 16:45:01 CST 2018// ActivityRepository chosen: class container.MockActivityRepository
+[CrawlerEngine] Sun Apr 01 16:45:01 CST 2018// Crawler engine started.
+[CrawlerEngine] Sun Apr 01 16:45:01 CST 2018// preparing crawlers.....
+[CrawlerEngine] Sun Apr 01 16:45:01 CST 2018// crawlers count: 2
+[CrawlerEngine] Sun Apr 01 16:45:01 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 01 16:45:01 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 01 16:45:56 CST 2018// ActivityRepository chosen: class container.MockActivityRepository
+[CrawlerEngine] Sun Apr 01 16:45:56 CST 2018// Crawler engine started.
+[CrawlerEngine] Sun Apr 01 16:45:56 CST 2018// preparing crawlers.....
+[CrawlerEngine] Sun Apr 01 16:45:56 CST 2018// crawlers count: 2
+[CrawlerEngine] Sun Apr 01 16:45:56 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 01 16:45:56 CST 2018// Crawler [CrawlerExample] is prepared.

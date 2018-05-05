@@ -4,17 +4,17 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.BlockingQueue;
+
 
 /**
  * @author Waterball
- * A Logger logs all the messages out into the log.txt and err.txt file
+ * A Logger logs all the messages out into the log.txt and err.txt file with the
+ * producer-consumer pattern.
  */
-public class Logger {
+public class Logger implements Runnable, AutoCloseable{
 	private String logFileName;
 	private String errFileName;
 	private File logFile;
@@ -27,6 +27,10 @@ public class Logger {
 		this.errFileName = errFileName;
 		logFile = new File(logFileName);
 		errFile = new File(errFileName);
+		createFilesIfNotExists();
+	}
+	
+	private void createFilesIfNotExists(){
 		try{
 			if (!logFile.exists())
 				logFile.createNewFile();
@@ -38,24 +42,25 @@ public class Logger {
 	}
 	
 	public void start(){
-		start = true;
-		new Thread(){
-			@Override
-			public void run() {
-				while(start)
-				{
-					try {
-						Message message = msgQueue.take();
-						writeToFile(message);
-					} catch (InterruptedException e) {}
-				}
-			}
-		}.start();
+		new Thread(this).start();
 	}
+
+
+	@Override
+	public void run() {
+		start = true;
+		while(start)
+		{
+			try {
+				Message message = msgQueue.take();
+				writeToFile(message);
+			} catch (InterruptedException e) {}
+		}
+	}	
 	
 	private void writeToFile(Message message){
 		File file;
-		if (message.equals(Message.ERR))
+		if (message.type.equals(Message.ERR))
 			file = errFile;
 		else
 			file = logFile;
@@ -97,10 +102,6 @@ public class Logger {
 	public String getErrFileName() {
 		return errFileName;
 	}
-
-	public void stop(){
-		start = false;
-	}
 	
 	private class Message{
 		static final String ERR = "err", LOG = "log";
@@ -110,5 +111,10 @@ public class Logger {
 			this.type = type;
 			this.msg = msg;
 		}
+	}
+
+	@Override
+	public void close(){
+		start = false;
 	}
 }

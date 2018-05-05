@@ -2,7 +2,6 @@ package container;
 
 import java.util.Date;
 import java.util.List;
-import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 
 import org.junit.Before;
@@ -32,7 +31,7 @@ public class TestJbdcRepository {
 			{
 				Activity at = ar.createActivity(new Activity(TESTNAME, new Date(), null, new Date(), 
 						"fsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsd", 
-						null, "here", "www","adas", "0987"));
+						"here", "www","adas", "0987"));
 			}
 		);
 	}

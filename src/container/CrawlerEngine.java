@@ -9,10 +9,13 @@ public final class CrawlerEngine {
 	private ActivityRepository activityRepository;
 	private Logger logger;
 	
-	public void startEngine(final int frequency) {
-		activityRepository = new MockActivityRepository();/*new JdbcProxy(new JdbcActivityRepository())*/
+	public void startEngine(final int frequency, boolean test) {
+		activityRepository = test ? new MockActivityRepository() : 
+				new JdbcProxy(new JdbcActivityRepository());
+		
 		logger = new Logger("log.txt", "err.txt");
 		logger.start();
+		logger.log(getClass(), "ActivityRepository chosen: " +  activityRepository.getClass());
 		logger.log(getClass(), "Crawler engine started.");
 		logger.log(getClass(), "preparing crawlers.....");
 		
@@ -51,12 +54,12 @@ public final class CrawlerEngine {
 			System.out.println("[Frequency : int] should be given as a parameter to run the crawler engine.");
 		int frequency = Integer.parseInt(argv[0]);*/
 		CrawlerEngine crawlerEngine = new CrawlerEngine();
-		crawlerEngine.startEngine(10);
+		crawlerEngine.startEngine(10, true);
 	}
 	
 	@Override
 	protected void finalize() throws Throwable {
-		logger.stop();
+		logger.close();
 		super.finalize();
 	}
 }
