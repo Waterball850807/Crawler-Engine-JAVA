@@ -50,3 +50,18 @@
 [CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// crawlers count: 2
 [CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// Crawler [CrawlerExample] is prepared.
 [CrawlerEngine] Sat Mar 31 23:58:34 CST 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 29 16:38:09 GMT+08:00 2018// Crawler engine started.
+[CrawlerEngine] Sun Apr 29 16:38:09 GMT+08:00 2018// preparing crawlers.....
+[CrawlerEngine] Sun Apr 29 16:38:09 GMT+08:00 2018// crawlers count: 2
+[CrawlerEngine] Sun Apr 29 16:38:09 GMT+08:00 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 29 16:38:09 GMT+08:00 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 29 16:38:17 GMT+08:00 2018// Start shceduling...
+[CrawlerEngine] Sun Apr 29 16:38:17 GMT+08:00 2018// run crawler CrawlerExample
+[CrawlerExample] Sun Apr 29 16:38:17 GMT+08:00 2018// sdfsdf
+[CrawlerEngine] Sun Apr 29 16:38:17 GMT+08:00 2018// run crawler CrawlerExample
+[CrawlerExample] Sun Apr 29 16:38:17 GMT+08:00 2018// sdfsdf
+[CrawlerEngine] Sun Apr 29 17:48:35 GMT+08:00 2018// Crawler engine started.
+[CrawlerEngine] Sun Apr 29 17:48:36 GMT+08:00 2018// preparing crawlers.....
+[CrawlerEngine] Sun Apr 29 17:48:36 GMT+08:00 2018// crawlers count: 2
+[CrawlerEngine] Sun Apr 29 17:48:36 GMT+08:00 2018// Crawler [CrawlerExample] is prepared.
+[CrawlerEngine] Sun Apr 29 17:48:36 GMT+08:00 2018// Crawler [CrawlerExample] is prepared.
