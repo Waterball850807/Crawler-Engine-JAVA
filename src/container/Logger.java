@@ -42,7 +42,9 @@ public class Logger implements Runnable, AutoCloseable{
 	}
 	
 	public void start(){
-		new Thread(this).start();
+		Thread task = new Thread(this);
+		task.setDaemon(true);
+		task.start();
 	}
 
 
