@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4a2c1b0-d826-4672-afcf-9690ebab26a9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/container/crawler/TaoYuanTravelCrawler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbcLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/jdbcLog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/CrawlerEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/CrawlerEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/JdbcActivityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/JdbcActivityRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/crawler/TaipeiTravelCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/crawler/TaipeiTravelCrawler.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -78,7 +72,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaipeiTravelCrawler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TaipeiTravelCrawler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/container/crawler/TaipeiTravelCrawler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="244">
@@ -88,6 +82,15 @@
                 <element signature="e#5878#5879#0" expanded="true" />
                 <element signature="e#5907#5908#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="29" column="16" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -172,6 +175,11 @@
             <path>
               <item name="Crawler-Engine-JAVA" type="b2602c69:ProjectViewProjectNode" />
               <item name="Crawler-Engine-JAVA" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Crawler-Engine-JAVA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Crawler-Engine-JAVA" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Crawler-Engine-JAVA" type="b2602c69:ProjectViewProjectNode" />
@@ -362,13 +370,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/container/ActivityRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/container/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1012">
@@ -766,6 +767,13 @@
             <element signature="e#5878#5879#0" expanded="true" />
             <element signature="e#5907#5908#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="29" column="16" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
         </state>
       </provider>
     </entry>
