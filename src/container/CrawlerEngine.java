@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import container.crawler.CrawlerExample;
+import container.crawler.TaipeiTravelCrawler;
 
 public final class CrawlerEngine {
 	private ActivityRepository activityRepository;

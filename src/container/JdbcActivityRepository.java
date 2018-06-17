@@ -38,6 +38,7 @@ public class JdbcActivityRepository implements ActivityRepository{
 			e.printStackTrace();
 		} finally {
 	          if (st != null) try { st.close(); } catch(Exception e) {}
+	          System.out.println("Activity stored: " + activity);
 	    }
 		return activity;
 	}

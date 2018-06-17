@@ -1,9 +1,6 @@
 package container.crawler;
 
-import container.ActivityRepository;
-import container.Crawler;
-import container.Logger;
-import container.MockActivityRepository;
+import container.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,89 +8,127 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
+import java.util.List;
 
 public class TaipeiTravelCrawler implements Crawler {
 
     private final static String ACTIVITIES_URL = "https://www.travel.taipei/zh-tw/activity";
     private final static String SOURCE = "台北旅遊網";
-    private ArrayList<String> activitiesUrl = new ArrayList<>();
+    private List<String> activityLinks = new ArrayList<>();
+    private List<String> pageLinks = new ArrayList<>();
     private int pageNum = 2;
+    private int id = 0;
 
-    public TaipeiTravelCrawler() {
+    private TaipeiTravelCrawler() {
+
     }
 
     @Override
     public void crawl(ActivityRepository activityRepository, Logger logger) {
         try {
             Document doc = Jsoup.connect(ACTIVITIES_URL).get();
-//            String lastPage = doc.select("a.last-page").attr("href");
-//            System.out.println(lastPage);
             logger.log(getClass(), doc.title());
+            //台北旅遊網活動的最後一頁
+            String lastPage = doc.select("a.last-page").attr("href");
+            logger.log(getClass(), "台北旅遊網活動的最後一頁: " + lastPage);
 
-//            getAllActivitiesUrl(doc);
-//            do {
-//                doc = Jsoup.connect(ACTIVITIES_URL + "?page=" + pageNum).get();
-//                System.out.println(ACTIVITIES_URL + "?page=" + pageNum);
-//                getAllActivitiesUrl(doc);
-//                System.out.println(activitiesUrl.size());
-//                pageNum++;
-//            } while (!lastPage.equals("/zh-tw/activity?page=" + (pageNum - 1)));
-//
-//            crawlerAllUrls(activitiesUrl);
+            addAllPageLinks(lastPage);
+            pageLinks.parallelStream().forEach(this::addAllActivityLinks);
+            System.out.println(activityLinks.size());
+            activityLinks.parallelStream().forEach(String -> {
+                try {
+                    activityRepository.createActivity(getActivity(String));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
 
-            //找到activity名稱
-            String url  = "https://www.travel.taipei/zh-tw/activity/details/17130";
-            Document document = Jsoup.connect(url).get();
-            Elements elements = document.select("div.main-container");
-            Elements elements1 = elements.select("div.unit-title-blk");
-            Elements element = elements1.select("h2.unit-title");
-            String title = element.html();
-            System.out.println(title);
+            logger.log(getClass(), "台北旅遊網的活動總數量: " + activityRepository.getActivities().size());
 
-            Elements el1 = document.select("dd.info");
-            String date = el1.first().html();
-            Elements el2 = el1.select("a.btn-location-link");
-            String address = el2.attr("title");
-            Elements e = document.select("p.date");
-            String updatedDate = e.first().html();
-            String content = document.select("div.manual-script-blk").html();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-            System.out.println(date);
-            System.out.println(address);
-            System.out.println(updatedDate);
-            System.out.println(content);
+    private void addAllPageLinks(String lastPage) {
+        pageLinks.add("https://www.travel.taipei/zh-tw/activity");
+        do {
+            pageLinks.add(ACTIVITIES_URL + "?page=" + pageNum);
+            pageNum++;
+        } while (!lastPage.equals("/zh-tw/activity?page=" + (pageNum - 1)));
+    }
 
+    private void addAllActivityLinks(String string) {
+        try {
+            Elements elements = Jsoup.connect(string).get().select("div.info-card-item").select("a.link");
+            for (Element element : elements)
+                activityLinks.add("https://www.travel.taipei" + element.attr("href"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void getAllActivitiesUrl(Document doc) {
-        Elements activities = doc.select("ul.event-news-card-list");
-        Elements activitiesURL = activities.select("a.link");
+    private Activity getActivity(String link) throws IOException {
+        Document document = Jsoup.connect(link).get();
+        String title = document.select("div.unit-title-blk").select("h2.unit-title").html();
+        if (title.equals(""))
+            return new Activity(id, "404 Not found", null, null, null, null, null, null, null, null);
+//        logger.log(getClass(), "activity title: " + title);
+            //拿到活動的開始結束日期
+        else {
+            String activityDate = document.select("dd.info").first().html();
+            //拿到活動地址
+            String address = document.select("a.btn-location-link").attr("title");
+            if (address.equals(""))
+                address = document.select("dl.event-info-list").select("dd.info").last().html();
 
-        //拿到所有活動的網址
-        Element con = null;
-        for (Iterator it = activitiesURL.iterator(); it.hasNext(); ) {
-            con = (Element) it.next();
-            String url = con.attr("href");
-            activitiesUrl.add(url);
+            //拿到更新日期所在的欄位的所有日期
+            String allUpdatedTableDate = document.select("p.date").first().html();
+
+            //拿到活動內文
+            String content = document.select("div.manual-script-blk").html();
+
+            Date activityStartDate;
+            Date activityEndDate;
+            Date activityUpdatedDate;
+
+            if (!isInteger(activityDate)) {
+                activityStartDate = null;
+                activityEndDate = null;
+            } else if (isSingleDate(activityDate)) {
+                activityStartDate = convertStringToDate(activityDate.substring(0, 10));
+                activityEndDate = convertStringToDate(activityDate.substring(0, 10));
+            } else {
+                activityStartDate = convertStringToDate(activityDate.substring(0, 10));
+                activityEndDate = convertStringToDate(activityDate.substring(11, 21));
+            }
+            activityUpdatedDate = convertStringToDate(allUpdatedTableDate.substring(25, 35));
+
+            id++;
+            return new Activity(id, title, activityStartDate, activityEndDate, activityUpdatedDate, content, SOURCE, link, address, null);
         }
     }
 
-    private void crawlerAllUrls(ArrayList<String> activitiesUrl) throws IOException {
-        String https = "https://www.travel.taipei";
-        for (int i = 0; i < activitiesUrl.size(); i++) {
-            Document document = Jsoup.connect(https + activitiesUrl.get(i)).get();
-            Elements test = document.select("h2.unit-title icon-unit-event");
-            System.out.println(test.html());
+    private boolean isInteger(String activityDate) {
+        try {
+            Integer.parseInt(activityDate);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 
-    @Override
-    public String getLink() {
-        return null;
+    private Date convertStringToDate(String date) {
+        return new Date(Integer.parseInt(date.substring(0, 4)) - 1900, Integer.parseInt(date.substring(5, 7)) - 1, Integer.parseInt(date.substring(8, 10)));
+    }
+
+    private boolean isSingleDate(String activityDate) {
+        String[] date = activityDate.split("");
+        for (int i = 0; i < date.length; i++)
+            if (date[i].equals("~") && i == 10)
+                return false;
+        return true;
     }
 
     @Override
@@ -102,10 +137,9 @@ public class TaipeiTravelCrawler implements Crawler {
     }
 
     public static void main(String[] args) {
-
         Crawler crawler = new TaipeiTravelCrawler();
-        crawler.crawl(new MockActivityRepository(), new Logger("log1.txt", "err1.txt"));
-
+        crawler.crawl(new JdbcProxy(new JdbcActivityRepository()), new Logger("log.txt", "err.txt"));
+//        crawler.crawl(new MockActivityRepository(), new Logger("log1.txt", "err1.txt"));
     }
 
 }
