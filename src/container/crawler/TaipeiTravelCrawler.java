@@ -20,10 +20,6 @@ public class TaipeiTravelCrawler implements Crawler {
     private int pageNum = 2;
     private int id = 0;
 
-    private TaipeiTravelCrawler() {
-
-    }
-
     @Override
     public void crawl(ActivityRepository activityRepository, Logger logger) {
         try {

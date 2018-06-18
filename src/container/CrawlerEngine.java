@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import container.crawler.CrawlerExample;
-import container.crawler.TaipeiTravelCrawler;
-
 public final class CrawlerEngine {
 	private ActivityRepository activityRepository;
 	private Logger logger;
@@ -66,14 +63,17 @@ public final class CrawlerEngine {
 	public static void main(String[] argv){
 		if (argv.length <= 0)
 			System.out.println("[Frequency (minutes) : int] should be given as a parameter to run the crawler engine.");
-		long frequency = TimeUnit.MINUTES.toMillis(Integer.parseInt(argv[0]));
-		if (frequency <= 0)
-			System.out.println("The frequency should be greater than 0.");
 		else
 		{
-			System.out.println("Frequency: " + frequency + " ms.");
-			CrawlerEngine crawlerEngine = new CrawlerEngine();
-			crawlerEngine.startEngine(frequency, true);
+			long frequency = TimeUnit.MINUTES.toMillis(Integer.parseInt(argv[0]));
+			if (frequency <= 0)
+				System.out.println("The frequency should be greater than 0.");
+			else
+			{
+				System.out.println("Frequency: " + frequency + " ms.");
+				CrawlerEngine crawlerEngine = new CrawlerEngine();
+				crawlerEngine.startEngine(frequency, true);
+			}
 		}
 	}
 	

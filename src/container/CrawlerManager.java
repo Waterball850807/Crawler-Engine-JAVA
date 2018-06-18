@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import container.crawler.CrawlerExample;
+import container.crawler.TaipeiTravelCrawler;
+import container.crawler.TaoYuanTravelCrawler;
 
 /**
  * @author Waterball
@@ -17,6 +19,8 @@ public class CrawlerManager {
 	 */
 	public CrawlerManager(){
 		addCrawler(new CrawlerExample());
+		addCrawler(new TaipeiTravelCrawler());
+		addCrawler(new TaoYuanTravelCrawler());
 	}
 	
 	public static CrawlerManager register(Class<? extends Crawler> crawlerClz){
